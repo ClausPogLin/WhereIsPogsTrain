@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "IxX5p5Y0ZtDJ+EiDSTk1WUHpsG0G3d0pn1b1gO2eGyeeQA182l0uoboGdEuqr7jE1s6qffXQFSIyMZQwcM81eA==",
+  "success": true,
+  "projectFilePath": "/Users/hakanalmer/Documents/Projects/CSharp/WhereIsPogsTrain/WhereIsPogsTrain/WhereIsPogsTrain.csproj",
+  "expectedPackageFiles": [
+    "/Users/hakanalmer/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/Users/hakanalmer/.nuget/packages/restsharp/110.2.1-alpha.0.16/restsharp.110.2.1-alpha.0.16.nupkg.sha512",
+    "/Users/hakanalmer/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
+    "/Users/hakanalmer/.nuget/packages/system.text.json/7.0.3/system.text.json.7.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
