@@ -22,7 +22,6 @@ class GenerateGraphAdjacencyMatrix
     /// </summary>
     /// <param name="weightPath"></param>
     /// <param name="number"></param>
-
     protected GenerateGraphAdjacencyMatrix(long[,] weightPath, long number)
     {
         GraphMatrix = new long[number + 5, number + 5];
@@ -43,8 +42,8 @@ class GenerateGraphAdjacencyMatrix
 
         for (var i = 0; i < weightPath.GetLength(dimension: 0); i++)
         {
-            var start                   = weightPath[i, 0];
-            var end                     = weightPath[i, 1];
+            var start = weightPath[i, 0];
+            var end   = weightPath[i, 1];
             GraphMatrix[start, end] = weightPath[i, 2];
         }
     }
@@ -174,7 +173,7 @@ class DijkstraAlgorithmSeekPath : GenerateGraphAdjacencyMatrix
                 Thread.Sleep(millisecondsTimeout: 1);
                 long prevStationNo          = _calculateVar.PrevStation[j];
                 int  newlyCalculatedNodeNum = 0;
-                int  inportNodeNum          = 0;//不得不生成
+                int  inportNodeNum          = 0; //不得不生成
                 _calculateVar.PrevPath[j] = new List<long>();
                 _calculateVar.PrevPath[j].Add(j); //二话不说先把自己加进去，然后再一站一站回溯
                 if (prevStationNo != 0)

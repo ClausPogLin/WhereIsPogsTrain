@@ -2,7 +2,7 @@
 {
     public static class ConsoleHelper
     {
-        public static void Print(string text,ConsoleColor color = default, int layerIndex = 0,string brforeTimer="")
+        public static void Print(string text, ConsoleColor color = default, int layerIndex = 0, string brforeTimer = "")
         {
             string _in = "";
             for (int i = 0; i < layerIndex; i++)
@@ -12,11 +12,11 @@
 
             var _prevColor = Console.ForegroundColor;
             Console.ForegroundColor = color;
-            Console.WriteLine(brforeTimer+"[" + DateTime.UtcNow + " UTC] " + _in + text);
+            Console.WriteLine(brforeTimer + "[" + DateTime.UtcNow + " UTC] " + _in + text);
             Console.ForegroundColor = _prevColor;
         }
-        
-        public static void PrintInLineWithTimer(string text,ConsoleColor color = default, int layerIndex = 0)
+
+        public static void PrintInLineWithTimer(string text, ConsoleColor color = default, int layerIndex = 0)
         {
             string _in = "";
             for (int i = 0; i < layerIndex; i++)
@@ -29,8 +29,8 @@
             Console.Write("[" + DateTime.UtcNow + " UTC] " + _in + text);
             Console.ForegroundColor = _prevColor;
         }
-        
-        public static void PrintInLine(string text,ConsoleColor color = default)
+
+        public static void PrintInLine(string text, ConsoleColor color = default)
         {
             var _prevColor = Console.ForegroundColor;
             Console.ForegroundColor = color;
