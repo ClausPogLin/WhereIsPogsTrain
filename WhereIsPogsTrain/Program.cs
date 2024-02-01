@@ -129,7 +129,7 @@ namespace WhereIsPogsTrain
                                     ConsoleColor.DarkYellow, 2);
             }
 
-            DijkstraAlgorithmSeekPath.StartDijkstra(networkMap, lineList, startStationDetailList.First());
+            DijkstraAlgorithmSeekPath.StartDijkstra(networkMap, lineList, startStationDetailList.First(),targetStationDetailList.First());
         }
     }
 }

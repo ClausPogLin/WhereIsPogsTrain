@@ -36,3 +36,9 @@ C:/Users/hakanalmer/Documents/Projects/WhereIsPogsTrain/WhereIsPogsTrain/obj/Deb
 /Users/hakanalmer/Documents/Projects/CSharp/WhereIsPogsTrain/WhereIsPogsTrain/obj/Debug/net8.0/ref/WhereIsPogsTrain.dll
 /Users/hakanalmer/Documents/Projects/CSharp/WhereIsPogsTrain/WhereIsPogsTrain/bin/Debug/net8.0/PogSharper.dll
 /Users/hakanalmer/Documents/Projects/CSharp/WhereIsPogsTrain/WhereIsPogsTrain/obj/Debug/net8.0/WhereIsPogsTrain.sourcelink.json
+/Users/hakanalmer/Documents/Projects/CSharp/WhereIsPogsTrain/WhereIsPogsTrain/bin/Debug/net8.0/Spectre.Console.dll
+/Users/hakanalmer/Documents/Projects/CSharp/WhereIsPogsTrain/WhereIsPogsTrain/bin/Debug/net8.0/Spectre.Console.Cli.dll
+/Users/hakanalmer/Documents/Projects/CSharp/WhereIsPogsTrain/WhereIsPogsTrain/bin/Debug/net8.0/de/Spectre.Console.Cli.resources.dll
+/Users/hakanalmer/Documents/Projects/CSharp/WhereIsPogsTrain/WhereIsPogsTrain/bin/Debug/net8.0/fr/Spectre.Console.Cli.resources.dll
+/Users/hakanalmer/Documents/Projects/CSharp/WhereIsPogsTrain/WhereIsPogsTrain/bin/Debug/net8.0/sv/Spectre.Console.Cli.resources.dll
+/Users/hakanalmer/Documents/Projects/CSharp/WhereIsPogsTrain/WhereIsPogsTrain/bin/Debug/net8.0/ColorThief.Netstandard.v20.dll

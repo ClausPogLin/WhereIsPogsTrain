@@ -22,6 +22,8 @@ namespace WhereIsPogsTrain
         public const string RETURN                   = "\n";
     }
 
+    
+
     public struct DijkstraCalculateVar
     {
         public long[]       Distance;

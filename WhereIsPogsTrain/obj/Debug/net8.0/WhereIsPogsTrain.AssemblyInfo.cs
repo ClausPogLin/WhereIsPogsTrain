@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WhereIsPogsTrain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c3307d0c1cd7d8e5e9b3e6152044e9b459a1f45")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2bff0cbd10888842ea0daa233adba6a97b4bbf59")]
 [assembly: System.Reflection.AssemblyProductAttribute("WhereIsPogsTrain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WhereIsPogsTrain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

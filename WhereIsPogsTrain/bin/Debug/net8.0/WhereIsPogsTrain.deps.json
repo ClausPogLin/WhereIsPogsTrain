@@ -10,10 +10,21 @@
         "dependencies": {
           "Newtonsoft.Json": "13.0.3",
           "RestSharp": "110.2.1-alpha.0.16",
+          "Spectre.Console": "0.48.0",
+          "Spectre.Console.Cli": "0.48.0",
+          "ksemenenko.ColorThief": "1.1.1.4",
           "PogSharper": "1.0.0.0"
         },
         "runtime": {
           "WhereIsPogsTrain.dll": {}
+        }
+      },
+      "ksemenenko.ColorThief/1.1.1.4": {
+        "runtime": {
+          "lib/netstandard2.0/ColorThief.Netstandard.v20.dll": {
+            "assemblyVersion": "1.1.0.1",
+            "fileVersion": "1.1.0.1"
+          }
         }
       },
       "Newtonsoft.Json/13.0.3": {
@@ -35,6 +46,40 @@
           }
         }
       },
+      "Spectre.Console/0.48.0": {
+        "dependencies": {
+          "System.Memory": "4.5.5"
+        },
+        "runtime": {
+          "lib/net8.0/Spectre.Console.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.48.0.0"
+          }
+        }
+      },
+      "Spectre.Console.Cli/0.48.0": {
+        "dependencies": {
+          "Spectre.Console": "0.48.0"
+        },
+        "runtime": {
+          "lib/net8.0/Spectre.Console.Cli.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.48.0.0"
+          }
+        },
+        "resources": {
+          "lib/net8.0/de/Spectre.Console.Cli.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net8.0/fr/Spectre.Console.Cli.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net8.0/sv/Spectre.Console.Cli.resources.dll": {
+            "locale": "sv"
+          }
+        }
+      },
+      "System.Memory/4.5.5": {},
       "System.Text.Encodings.Web/7.0.0": {},
       "System.Text.Json/7.0.3": {
         "dependencies": {
@@ -57,6 +102,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "ksemenenko.ColorThief/1.1.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-970sWLIXgBOldyxatU2zGK3+nSLZER0xFW9uSjUkgNR2pvTqyjJp8yEFFKEnf1Tp7DzhmMAfFs9j/UvdM5pKcw==",
+      "path": "ksemenenko.colorthief/1.1.1.4",
+      "hashPath": "ksemenenko.colorthief.1.1.1.4.nupkg.sha512"
+    },
     "Newtonsoft.Json/13.0.3": {
       "type": "package",
       "serviceable": true,
@@ -70,6 +122,27 @@
       "sha512": "sha512-3+Nb8GEeWwYCx+DTb7t+msz7CZBFiInE7Ejd4a2iivqTTP/BhNB3vpXibK5NKLUHsn0z6MDFxVhzPNaXaT5yCA==",
       "path": "restsharp/110.2.1-alpha.0.16",
       "hashPath": "restsharp.110.2.1-alpha.0.16.nupkg.sha512"
+    },
+    "Spectre.Console/0.48.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4Mc1UT7Azgtyb8FyNwK5FZmoZbKuT5PmY7ZwaKUytjD5kGFMNBACpOZTwYtkuY377YkYtZYBeDDTJUwTW86QXw==",
+      "path": "spectre.console/0.48.0",
+      "hashPath": "spectre.console.0.48.0.nupkg.sha512"
+    },
+    "Spectre.Console.Cli/0.48.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HNoDxAOTODQ9h+4K5Cs2caW8kIicRKw5SS4vgEEkJtnTp7/4XR8OIGvCjVi09w3m+xn4lTlkS0ENy2ktGz4HRw==",
+      "path": "spectre.console.cli/0.48.0",
+      "hashPath": "spectre.console.cli.0.48.0.nupkg.sha512"
+    },
+    "System.Memory/4.5.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XIWiDvKPXaTveaB7HVganDlOCRoj03l+jrwNvcge/t8vhGYKvqV+dMv6G4SAX2NoNmN0wZfVPTAlFwZcZvVOUw==",
+      "path": "system.memory/4.5.5",
+      "hashPath": "system.memory.4.5.5.nupkg.sha512"
     },
     "System.Text.Encodings.Web/7.0.0": {
       "type": "package",
