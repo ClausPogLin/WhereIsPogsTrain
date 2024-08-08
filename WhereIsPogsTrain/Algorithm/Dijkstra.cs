@@ -79,7 +79,7 @@ class DijkstraAlgorithmSeekPath : GenerateGraphAdjacencyMatrix
     }
 
     /// <summary>
-    /// 导入已经处理的邻接矩阵并使用迪杰斯特拉算法寻找最短路径(遍历)
+    /// 导入已经处理的邻接矩阵并使用迪杰斯特拉算法寻找最短路径(��历)
     /// </summary>
     /// <param name="graphMatrix"></param>
     public DijkstraAlgorithmSeekPath(long[,] graphMatrix, Graph network, List<LineName> lineList, StationList startStation) : base(graphMatrix)
@@ -89,6 +89,7 @@ class DijkstraAlgorithmSeekPath : GenerateGraphAdjacencyMatrix
         _calculateVar.PrevPath    = new List<long>[GraphMatrix.GetLength(0)];
         _calculateVar.Processed   = new long[GraphMatrix.GetLength(0)];
         _calculateVar.PrevStation = new long[GraphMatrix.GetLength(0)];
+        _calculateVar.TransferStations = new List<TransferStation>();
         this.network              = network;
         this.lineList             = lineList;
         this.startStation         = startStation;
@@ -193,8 +194,14 @@ class DijkstraAlgorithmSeekPath : GenerateGraphAdjacencyMatrix
                                 .stationNo2StationList(_calculateVar.PrevPath[intJ][n + 1].ToString().PadLeft(4, '0'),
                                                        network).First().StationNameZh) //如果下一站存在且当前站与下一站距离为0（换乘）
                         {
-                            if (startTransFormChecking == true) loopCheckIndex++;
-                            else startTransFormChecking = true;
+                            if (startTransFormChecking == true) 
+                            {loopCheckIndex++;}
+                            else
+                            {
+                                startTransFormChecking = true;
+                                
+                            }
+                            
                         }
                         else
                         {
@@ -214,6 +221,13 @@ class DijkstraAlgorithmSeekPath : GenerateGraphAdjacencyMatrix
                                                           .LineNo2LineName(
                                                               transformToStation.First().StationCodes.First().LineNo,
                                                               lineList);
+                                _calculateVar.TransferStations.Add(new TransferStation()
+                                {
+                                    fromLineNo = transformFromStation.First().StationCodes.First()
+                                        .LineNo,
+                                    toLineNo = transformToStation.First().StationCodes.First().LineNo,
+                                    transferStationsName = stationName
+                                });
                                 if (n+1 == _calculateVar.PrevPath[j].Count)
                                 {
                                     AnsiConsole.Markup($"[{transformFromLine.Value.lineColorHex}]{stationName}[/]");
@@ -415,7 +429,7 @@ class DijkstraAlgorithmSeekPath : GenerateGraphAdjacencyMatrix
         ConsoleHelper.Print(DIVIDED_LINE_TEXT, ConsoleColor.Gray);
 
         #endregion
-        
+
     }
 
     public void PrintResult(StationList targrtStation)
@@ -423,18 +437,59 @@ class DijkstraAlgorithmSeekPath : GenerateGraphAdjacencyMatrix
         AnsiConsole.WriteLine();
         AnsiConsole.Markup($"  [bold gray100 on lime] Succeed [/] [lime] {startStation.StationNameZh}({startStation.StationNameEn}) to {targrtStation.StationNameZh}({targrtStation.StationNameEn})[/] [silver]{_calculateVar.Distance[Convert.ToInt16(targrtStation.StationNo)]}m.[/]");
         AnsiConsole.WriteLine();
+        AnsiConsole.WriteLine();
         PrintPathOfIndex(Convert.ToInt16(targrtStation.StationNo));
-        //TODO:获取最近列车，时间，判断是否在运营时间内
+        //TODO:获���最近列车，时间，判断是否在运营时间内
     }
 
-    public static void StartDijkstra(Graph network, List<LineName> lineList, StationList station,StationList targetStation)
+    private static long[,] ConvertToMatrix(Dictionary<int, Dictionary<int, long>> edges, int size)
+    {
+        long[,] matrix = new long[size, size];
+    
+        // 初始化矩阵
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                matrix[i, j] = INFINTE_NUM;
+            }
+        }
+
+        // 填充矩阵
+        foreach (var outer in edges)
+        {
+            foreach (var inner in outer.Value)
+            {
+                if (outer.Key < size && inner.Key < size)
+                {
+                    matrix[outer.Key, inner.Key] = inner.Value;
+                }
+            }
+        }
+        return matrix;
+    }
+
+    public static RouteDetail StartDijkstra(Graph network, List<LineName> lineList, StationList station, StationList targetStation)
     {
         ConsoleHelper.Print(DIVIDED_LINE_TEXT, ConsoleColor.Green);
-        ConsoleHelper.Print("Network built,now start dijkstra to find shortest path to every station.",
-                            ConsoleColor.Green);
+        ConsoleHelper.Print("Network built, now start dijkstra to find shortest path to every station.", ConsoleColor.Green);
         ConsoleHelper.Print(DIVIDED_LINE_TEXT, ConsoleColor.Green);
-        DijkstraAlgorithmSeekPath algorithmObj = new DijkstraAlgorithmSeekPath(network.edges,network, lineList, station);
+
+        int size = network.edges.Keys.Max() + 1; // Assuming the keys are 0-based and contiguous
+        long[,] edgesMatrix = ConvertToMatrix(network.edges, size);
+
+        DijkstraAlgorithmSeekPath algorithmObj = new DijkstraAlgorithmSeekPath(edgesMatrix, network, lineList, station);
         algorithmObj.ShortestPath();
         algorithmObj.PrintResult(targetStation);
+
+        RouteDetail result = new RouteDetail()
+        {
+            fromStationNo = station.StationNo,
+            toStationNo = targetStation.StationNo,
+            StationsList = new List<long>(algorithmObj._calculateVar.PrevStation),
+            transStations = algorithmObj._calculateVar.TransferStations
+        };
+
+        return result;
     }
 }

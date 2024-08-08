@@ -25,7 +25,7 @@ namespace WhereIsPogsTrain
 
             #region 构造图和依StationNo为节点编号的邻接矩阵
 
-            Graph networkMap = new Graph(20005);
+            Graph networkMap = new Graph();
             ConsoleHelper.Print("Railway network data got.", ConsoleColor.Green, 1);
             foreach (var line in networkDetail)
             {
@@ -33,7 +33,6 @@ namespace WhereIsPogsTrain
                                     1);
                 ConsoleHelper.Print("with " + line.SubLine.Count + " sublines.", ConsoleColor.Gray, 1);
                 ConsoleHelper.Print("Waiting for network to cooldown...(500ms)", ConsoleColor.Gray, 2); //冷却
-                Thread.Sleep(500);
                 var lineDistanceDetail = apis.GetStationDistance(line.LineNo).Data; //获取站间距离api接口
                 ConsoleHelper.Print("Distance data of " + line.LineNameZh + "(" + line.LineNameEn + ") got.",
                                     ConsoleColor.Green, 1);
@@ -74,7 +73,6 @@ namespace WhereIsPogsTrain
                                     //若图中已经添加过相同节点，仍然重复添加，但将二者邻接矩阵权重视为0(即为换乘站)
                                     _alreadyAdded = true;
                                     _alreadyAddedStationNum++; //重复标记和重复计数器+1
-                                    Thread.Sleep(1);
                                     ConsoleHelper.Print(
                                         "Connecting " + ((StationList)stationItem).StationNameZh + "(Line No." +
                                         ((StationList)stationItem).StationCodes.First().LineNo + ") to " +
@@ -105,18 +103,27 @@ namespace WhereIsPogsTrain
             #endregion
 
             Search:
-            ConsoleHelper.Print("Enter start StationCode：");
-            NowStationCode = Console.ReadLine();
-            ConsoleHelper.Print("Enter target StationCode：");
-            DestinationStationCode = Console.ReadLine();
+            ConsoleHelper.Print("Enter start Station：");
+            string _nowStationInput = Console.ReadLine();
+            if (DataLanguageConverter.stationName2Station(_nowStationInput, networkMap) is null)
+            {
+                ConsoleHelper.Print("Non-existent origin station", ConsoleColor.Red, 1);
+                goto Search;
+            }
+            NowStationCode = DataLanguageConverter.stationName2Station(_nowStationInput, networkMap).StationNo;
+            
+            ConsoleHelper.Print("Enter target Station：");
+            string _DestinationStationInput = Console.ReadLine();
+            if (DataLanguageConverter.stationName2Station(_DestinationStationInput, networkMap) is null)
+            {
+                ConsoleHelper.Print("Non-existent destination station", ConsoleColor.Red, 1);
+                goto Search;
+            }
+            DestinationStationCode =
+                DataLanguageConverter.stationName2Station(_DestinationStationInput, networkMap).StationNo;
             var startStationDetailList = DataLanguageConverter.stationNo2StationList(NowStationCode, networkMap);
             var targetStationDetailList
                 = DataLanguageConverter.stationNo2StationList(DestinationStationCode, networkMap);
-            if (startStationDetailList == null || startStationDetailList == null)
-            {
-                ConsoleHelper.Print("Non-existent origin or destination station", ConsoleColor.Red, 1);
-                goto Search;
-            }
 
             ConsoleHelper.Print(DIVIDED_LINE_TEXT, ConsoleColor.Gray);
             ConsoleHelper.Print(
@@ -130,6 +137,9 @@ namespace WhereIsPogsTrain
             }
 
             DijkstraAlgorithmSeekPath.StartDijkstra(networkMap, lineList, startStationDetailList.First(),targetStationDetailList.First());
+            
+            
+            
         }
     }
 }

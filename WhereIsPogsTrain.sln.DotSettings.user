@@ -2,4 +2,5 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhakanalmer_002FRiderProjects_002FPogSharper_002FPogSharper_002Fobj_002FDebug_002Fnet8_002E0_002Frefint_002FPogSharper_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
   &lt;Assembly Path="/Users/hakanalmer/.nuget/packages/ksemenenko.colorthief/1.1.1.4/lib/netstandard2.0/ColorThief.Netstandard.v20.dll" /&gt;
+  &lt;Assembly Path="/Users/hakanalmer/Documents/Projects/CSharp/WhereIsPogsTrain/WhereIsPogsTrain/bin/Debug/net8.0/WhereIsPogsTrain.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

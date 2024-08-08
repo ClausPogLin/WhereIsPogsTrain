@@ -30,6 +30,7 @@ namespace WhereIsPogsTrain
         public long[]       PrevStation;
         public List<long>[] PrevPath;
         public long[]       Processed;
+        public List<TransferStation>       TransferStations;
     }
 
     public struct LineName
@@ -38,5 +39,20 @@ namespace WhereIsPogsTrain
         public string lineNameZh;
         public string lineColorHex;
         public string lineNo;
+    }
+
+    public struct RouteDetail
+    {
+        public List<long> StationsList;
+        public List<TransferStation> transStations;
+        public string fromStationNo;
+        public string toStationNo;
+    }
+
+    public struct TransferStation
+    {
+        public string transferStationsName;
+        public string fromLineNo;
+        public string toLineNo;
     }
 }

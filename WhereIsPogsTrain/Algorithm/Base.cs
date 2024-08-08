@@ -5,7 +5,9 @@ using static WhereIsPogsTrain.Data;
 
 namespace WhereIsPogsTrain.Algorithm;
 
+/*
 public class Graph
+
 {
     public  ArrayList vertexList; //存储点的链表
     public  long[,]   edges; //邻接矩阵，用来存储边
@@ -101,9 +103,129 @@ public class Graph
         return -1;
     }
 }
+*/
+
+public class Graph
+{
+    public List<object> vertexList; // 存储点的链表
+    public Dictionary<int, Dictionary<int, long>> edges; // 邻接矩阵，用来存储边
+    private int numOfEdges; // 边的数目
+
+    public Graph()
+    {
+        edges = new Dictionary<int, Dictionary<int, long>>();
+        vertexList = new List<object>();
+        ConsoleHelper.Print("Building edges graph...", default, 1);
+        numOfEdges = 0;
+    }
+
+    // 得到结点的个数
+    public int getNumOfVertex()
+    {
+        return vertexList.Count;
+    }
+
+    // 得到边的数目
+    public int getNumOfEdges()
+    {
+        return numOfEdges;
+    }
+
+    // 返回结点i的数据
+    public object getValueByIndex(int i)
+    {
+        return vertexList[i];
+    }
+
+    // 返回v1,v2的权值
+    public long getWeight(int v1, int v2)
+    {
+        if (edges.ContainsKey(v1) && edges[v1].ContainsKey(v2))
+        {
+            return edges[v1][v2];
+        }
+        return Data.INFINTE_NUM;
+    }
+
+    // 插入结点
+    public void insertVertex(object vertex)
+    {
+        vertexList.Add(vertex);
+    }
+
+    // 插入边
+    public void insertEdge(int v1, int v2, long weight)
+    {
+        if (!edges.ContainsKey(v1))
+        {
+            edges[v1] = new Dictionary<int, long>();
+        }
+        edges[v1][v2] = weight;
+        numOfEdges++;
+    }
+
+    // 删除边
+    public void deleteEdge(int v1, int v2)
+    {
+        if (edges.ContainsKey(v1) && edges[v1].ContainsKey(v2))
+        {
+            edges[v1].Remove(v2);
+            numOfEdges--;
+        }
+    }
+
+    // 得到第一个邻接结点的下标
+    public int getFirstNeighbor(int index)
+    {
+        if (edges.ContainsKey(index))
+        {
+            foreach (var neighbor in edges[index])
+            {
+                if (neighbor.Value > 0)
+                {
+                    return neighbor.Key;
+                }
+            }
+        }
+        return -1;
+    }
+
+    // 根据前一个邻接结点的下标来取得下一个邻接结点
+    public int getNextNeighbor(int v1, int v2)
+    {
+        if (edges.ContainsKey(v1))
+        {
+            bool found = false;
+            foreach (var neighbor in edges[v1])
+            {
+                if (found && neighbor.Value > 0)
+                {
+                    return neighbor.Key;
+                }
+                if (neighbor.Key == v2)
+                {
+                    found = true;
+                }
+            }
+        }
+        return -1;
+    }
+}
 
 public static class DataLanguageConverter
 {
+    public static StationList? stationName2Station(string name,Graph network)
+    {
+        foreach (StationList station in network.vertexList)
+        {
+            if (station.StationNameEn == name || station.StationNameZh == name)
+            {
+                return station;
+            }
+        }
+
+        return null;
+    }
     public static List<StationList>? stationNo2StationList(string stationNo, Graph network)
     {
         var    stationList = new List<StationList>();

@@ -1,7 +1,7 @@
 ﻿namespace WhereIsPogsTrain
 {
     public static class ConsoleHelper
-    {
+    { 
         public static void Print(string text, ConsoleColor color = default, int layerIndex = 0, string brforeTimer = "")
         {
             string _in = "";

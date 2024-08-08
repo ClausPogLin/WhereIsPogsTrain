@@ -33,6 +33,27 @@ namespace WhereIsPogsTrain
             RestResponse response = client.Get(request);
             return Models.GetStationDistance.FromJson(response.Content) ?? null;
         }
+        
+        public GetStationDistance? GetStationDisAtanceA(string lineNo)
+        {
+            var client  = new RestClient(Data.GET_STATION_DISTANCE_URL);
+            var request = new RestRequest { Method = Method.Get };
+
+            //var body = @"{""lineNo"":" + lineNo + @"}";
+            request.AddQueryParameter("lineNo", lineNo);
+
+            //request.AddParameter("application/json", body, ParameterType.RequestBody);
+            RestResponse response;
+            try
+            {
+                response = client.Get(request);
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+            return Models.GetStationDistance.FromJson(response.Content) ?? null;
+        }
 
         public GetRailwayNetworkDetail? GetRailwayNetworkDetail()
         {
